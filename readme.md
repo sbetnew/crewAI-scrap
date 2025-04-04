@@ -1,244 +1,164 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrewAI + Groq: Web Scraper de Notícias de IA</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-        }
-        h1 {
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        h2 {
-            border-left: 4px solid #3498db;
-            padding-left: 10px;
-            margin-top: 30px;
-        }
-        code {
-            background-color: #f8f9fa;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        pre {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        .badge {
-            display: inline-block;
-            padding: 3px 7px;
-            border-radius: 3px;
-            font-size: 0.8em;
-            font-weight: bold;
-            margin-right: 5px;
-        }
-        .python {
-            background-color: #3776ab;
-            color: white;
-        }
-        .crewai {
-            background-color: #27ae60;
-            color: white;
-        }
-        .groq {
-            background-color: #e67e22;
-            color: white;
-        }
-        .file-structure {
-            font-family: monospace;
-            white-space: pre;
-            line-height: 1.3;
-        }
-        .toc {
-            background-color: #f0f7ff;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1>🚀 CrewAI + Groq: Web Scraper de Notícias de IA</h1>
-    
-    <div class="badge python">Python 3.10+</div>
-    <div class="badge crewai">CrewAI 0.28.8</div>
-    <div class="badge groq">Groq LLaMA3</div>
+CrewAI + Groq: Web Scraper de Notícias de IA body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; } h1, h2, h3 { color: #2c3e50; } h1 { border-bottom: 2px solid #3498db; padding-bottom: 10px; } h2 { border-left: 4px solid #3498db; padding-left: 10px; margin-top: 30px; } code { background-color: #f8f9fa; padding: 2px 5px; border-radius: 3px; font-family: 'Courier New', Courier, monospace; } pre { background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; } .badge { display: inline-block; padding: 3px 7px; border-radius: 3px; font-size: 0.8em; font-weight: bold; margin-right: 5px; } .python { background-color: #3776ab; color: white; } .crewai { background-color: #27ae60; color: white; } .groq { background-color: #e67e22; color: white; } .file-structure { font-family: monospace; white-space: pre; line-height: 1.3; } .toc { background-color: #f0f7ff; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
 
-    <div class="toc">
-        <h2>📋 Sumário</h2>
-        <ul>
-            <li><a href="#visao-geral">Visão Geral</a></li>
-            <li><a href="#pre-requisitos">Pré-requisitos</a></li>
-            <li><a href="#instalacao">Instalação</a></li>
-            <li><a href="#configuracao">Configuração</a></li>
-            <li><a href="#como-usar">Como Usar</a></li>
-            <li><a href="#estrutura">Estrutura de Arquivos</a></li>
-            <li><a href="#personalizacao">Personalização</a></li>
-            <li><a href="#troubleshooting">Troubleshooting</a></li>
-            <li><a href="#licenca">Licença</a></li>
-        </ul>
-    </div>
+# 🚀 CrewAI + Groq: Web Scraper de Notícias de IA
 
-    <h2 id="visao-geral">🌐 Visão Geral</h2>
-    <p>Sistema automatizado que:</p>
-    <ol>
-        <li>Coleta notícias sobre IA do TechCrunch</li>
-        <li>Processa o conteúdo com Groq (LLaMA3-70b)</li>
-        <li>Gera relatórios em português</li>
-    </ol>
+Python 3.10+
 
-    <p><strong>Tecnologias:</strong></p>
-    <ul>
-        <li>CrewAI (framework para agentes)</li>
-        <li>Groq (inferência ultra-rápida)</li>
-        <li>Playwright (scraping web)</li>
-    </ul>
+CrewAI 0.28.8
 
-    <h2 id="pre-requisitos">🛠️ Pré-requisitos</h2>
-    <ul>
-        <li>Python 3.10+</li>
-        <li><a href="https://console.groq.com/" target="_blank">Conta na Groq</a></li>
-    </ul>
+Groq LLaMA3
 
-    <pre><code># Verifique sua versão do Python
+## 📋 Sumário
 
-python --version</code></pre>
+- [Visão Geral](#visao-geral)
+- [Pré-requisitos](#pre-requisitos)
+- [Instalação](#instalacao)
+- [Configuração](#configuracao)
+- [Como Usar](#como-usar)
+- [Estrutura de Arquivos](#estrutura)
+- [Personalização](#personalizacao)
+- [Troubleshooting](#troubleshooting)
+- [Licença](#licenca)
 
-    <h2 id="instalacao">📥 Instalação</h2>
+## 🌐 Visão Geral
 
-    <h3>1. Clone o repositório</h3>
-    <pre><code>git clone https://github.com/seu-usuario/crewai-groq-scraper.git
+Sistema automatizado que:
 
-cd crewai-groq-scraper</code></pre>
+1.  Coleta notícias sobre IA do TechCrunch
+2.  Processa o conteúdo com Groq (LLaMA3-70b)
+3.  Gera relatórios em português
 
-    <h3>2. Configure ambiente virtual</h3>
-    <pre><code>python -m venv venv
+**Tecnologias:**
 
-# Windows:
+- CrewAI (framework para agentes)
+- Groq (inferência ultra-rápida)
+- Playwright (scraping web)
 
-venv\Scripts\activate
+## 🛠️ Pré-requisitos
 
-# Mac/Linux:
+- Python 3.10+
+- [Conta na Groq](https://console.groq.com/)
 
-source venv/bin/activate</code></pre>
+  # Verifique sua versão do Python
 
-    <h3>3. Instale dependências</h3>
-    <pre><code>pip install -r requirements.txt
+  python --version
 
-playwright install chromium</code></pre>
+## 📥 Instalação
 
-    <h3>4. Configure sua API key</h3>
-    <pre><code>echo "GROQ_API_KEY=sua_chave_aqui" > .env</code></pre>
+### 1\. Clone o repositório
 
-    <h2 id="configuracao">⚙️ Configuração</h2>
+    git clone https://github.com/seu-usuario/crewai-groq-scraper.git
 
-    <h3>Arquivo <code>main.py</code>:</h3>
-    <pre><code># Configuração do LLM
+    cd crewai-groq-scraper
 
-llm = ChatGroq(
-model="groq/llama3-70b-8192",
-groq_api_key=os.getenv("GROQ_API_KEY"),
-temperature=0.6 # 0 = preciso, 1 = criativo
-)
+### 2\. Configure ambiente virtual
 
-# Configuração do Scraper
+    python -m venv venv
 
-scraper = ScrapeWebsiteTool(
-website_url="https://techcrunch.com/category/artificial-intelligence/",
-browser="chromium",
-timeout=60
-)</code></pre>
+    # Windows:
 
-    <h2 id="como-usar">🖥️ Como Usar</h2>
-    <p>Execute o sistema:</p>
-    <pre><code>python main.py</code></pre>
+    venv\Scripts\activate
 
-    <p><strong>Saídas geradas:</strong></p>
-    <ul>
-        <li><code>output/scraping_result.md</code>: Dados brutos</li>
-        <li><code>output/resumo_ia.md</code>: Análise consolidada</li>
-    </ul>
+    # Mac/Linux:
 
-    <p>Exemplo de saída:</p>
-    <pre><code>## 🗞️ Últimas Notícias de IA
+    source venv/bin/activate
 
-1.  **Novo modelo da OpenAI bate recordes**
+### 3\. Instale dependências
 
-    - Data: 15/06/2024
-    - [Link](https://exemplo.com/noticia1)
+    pip install -r requirements.txt
 
-2.  **Robôs humanoides na Amazon**
+    playwright install chromium
 
-    - Data: 10/06/2024
-    - [Link](https://exemplo.com/noticia2)</code></pre>
+### 4\. Configure sua API key
 
+    echo "GROQ_API_KEY=sua_chave_aqui" > .env
 
-        <h2 id="estrutura">📂 Estrutura de Arquivos</h2>
-        <div class="file-structure">
+## ⚙️ Configuração
 
-    .
-    ├── main.py # Código principal
-    ├── requirements.txt # Dependências
-    ├── .env # Chaves API
-    ├── output/ # Resultados
-    │ ├── scraping_result.md
-    │ └── resumo_ia.md
-    └── README.md # Documentação
-    </div>
+### Arquivo `main.py`:
 
-        <h2 id="personalizacao">🎛️ Personalização</h2>
+    # Configuração do LLM
 
-        <h3>Mudar site alvo:</h3>
-        <pre><code>scraper = ScrapeWebsiteTool(
-        website_url="https://novosite.com/ia",
-        extract="links"  # Alternativas: text/html
+    llm = ChatGroq(
+    model="groq/llama3-70b-8192",
+    groq_api_key=os.getenv("GROQ_API_KEY"),
+    temperature=0.6 # 0 = preciso, 1 = criativo
+    )
 
-    )</code></pre>
+    # Configuração do Scraper
 
-        <h3>Usar modelo diferente:</h3>
-        <pre><code>llm = ChatGroq(
-        model="groq/mixtral-8x7b-32768",  # Mais rápido
-        temperature=0.4
+    scraper = ScrapeWebsiteTool(
+    website_url="https://techcrunch.com/category/artificial-intelligence/",
+    browser="chromium",
+    timeout=60
+    )
 
-    )</code></pre>
+## 🖥️ Como Usar
 
-        <h2 id="troubleshooting">🔧 Troubleshooting</h2>
+Execute o sistema:
 
-        <h3>Erros comuns:</h3>
+    python main.py
 
-        <p><strong>1. Timeout no scraping</strong></p>
-        <pre><code>scraper = ScrapeWebsiteTool(..., timeout=120)</code></pre>
+**Saídas geradas:**
 
-        <p><strong>2. Problemas com Playwright</strong></p>
-        <pre><code>playwright install</code></pre>
+- `output/scraping_result.md`: Dados brutos
+- `output/resumo_ia.md`: Análise consolidada
 
-        <p><strong>3. Erros na API Groq</strong></p>
-        <ul>
-            <li>Verifique:
-                <ul>
-                    <li>Chave API no <code>.env</code></li>
-                    <li><a href="https://console.groq.com/settings/limits" target="_blank">Limites de uso</a></li>
-                </ul>
-            </li>
-        </ul>
+Exemplo de saída:
 
-        <hr>
+    ## 🗞️ Últimas Notícias de IA
 
-        <p>Desenvolvido por <strong>Sabrina Bet</strong> • <strong>2025</strong><br>
-        <a href="https://linkedin.com/in/seu-perfil" target="_blank">LinkedIn</a></p>
+    1.  **Novo modelo da OpenAI bate recordes**
 
-    </body>
-    </html>
+        - Data: 15/06/2024
+        - [Link](https://exemplo.com/noticia1)
+
+    2.  **Robôs humanoides na Amazon**
+
+        - Data: 10/06/2024
+        - [Link](https://exemplo.com/noticia2)
+
+## 📂 Estrutura de Arquivos
+
+. ├── main.py # Código principal ├── requirements.txt # Dependências ├── .env # Chaves API ├── output/ # Resultados │ ├── scraping_result.md │ └── resumo_ia.md └── README.md # Documentação
+
+## 🎛️ Personalização
+
+### Mudar site alvo:
+
+    scraper = ScrapeWebsiteTool(
+            website_url="https://novosite.com/ia",
+            extract="links"  # Alternativas: text/html
+
+        )
+
+### Usar modelo diferente:
+
+    llm = ChatGroq(
+            model="groq/mixtral-8x7b-32768",  # Mais rápido
+            temperature=0.4
+
+        )
+
+## 🔧 Troubleshooting
+
+### Erros comuns:
+
+**1\. Timeout no scraping**
+
+    scraper = ScrapeWebsiteTool(..., timeout=120)
+
+**2\. Problemas com Playwright**
+
+    playwright install
+
+**3\. Erros na API Groq**
+
+- Verifique:
+  - Chave API no `.env`
+  - [Limites de uso](https://console.groq.com/settings/limits)
+
+---
+
+Desenvolvido por **Sabrina Bet** • **2025**  
+[LinkedIn](https://linkedin.com/in/seu-perfil)
