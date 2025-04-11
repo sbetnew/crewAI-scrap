@@ -1,6 +1,6 @@
 # 🚀 CrewAI + Groq: Web Scraper de Notícias de IA
 
-Python 3.10+
+Python 3.12
 CrewAI 0.28.8
 Groq LLaMA3
 
@@ -32,7 +32,7 @@ Sistema automatizado que:
 
 ## 🛠️ Pré-requisitos
 
-- Python 3.10+
+- Python 3.12
 - [Conta na Groq](https://console.groq.com/)
 
   # Verifique sua versão do Python
@@ -116,7 +116,13 @@ Exemplo de saída:
 
 ## 📂 Estrutura de Arquivos
 
-. ├── main.py # Código principal ├── requirements.txt # Dependências ├── .env # Chaves API ├── output/ # Resultados │ ├── scraping_result.md │ └── resumo_ia.md └── README.md # Documentação
+. ├── main.py # Código principal
+. ├── requirements.txt # Dependências
+. ├── .env # Chaves API
+. ├── output/ # Resultados
+. │ ├── scraping_result.md
+. │ └── resumo_ia.md
+. └── README.md # Documentação
 
 ## 🎛️ Personalização
 
