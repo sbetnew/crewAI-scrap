@@ -49,7 +49,7 @@ Sistema automatizado que:
 
 ### 2\. Configure ambiente virtual
 
-    python -m venv venv
+    py -3.12 -m venv venv
 
     # Windows:
 

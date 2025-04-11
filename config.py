@@ -8,7 +8,7 @@ load_dotenv()
 # Configuração do LLM
 def get_llm():
     return ChatGroq(
-        model="groq/llama3-70b-8192",
+        model="meta-llama/llama-4-scout-17b-16e-instruct",
         groq_api_key=os.getenv("GROQ_API_KEY"),
-        temperature=0.6
+        temperature=0.6  # 0 a 1
     )
